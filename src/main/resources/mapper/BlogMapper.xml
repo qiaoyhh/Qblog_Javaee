@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qyh.myblog_javaee.mapper.BlogMapper">
+
+    <!--定义通过id查询博客的resultMap,将查询结果映射到BlogBean类中-->
+    <resultMap type="com.qyh.myblog_javaee.model.BlogBean" id="BlogUserResultMap">
+        <!--column 是数据库中列名，property 是bean中对应的字段-->
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="type" property="type"/>
+        <result column="create_time" property="createTime"/>
+        <result column="content" property="content"/>
+        <result column="title" property="title"/>
+        <!--association:用于映射关联查询单个对象的信息-->
+        <association property="userBean" javaType="com.qyh.myblog_javaee.model.UserInfoBean">
+            <id column="user_id" property="userId"/>
+            <result column="user_name" property="userName"/>
+        </association>
+    </resultMap>
+
+    <select id="findBlogListByUserId" resultMap="BlogUserResultMap">
+
+  SELECT t.user_name,b.* FROM tb_user t
+       LEFT JOIN blog b ON (t.user_id = b.user_id) WHERE b.user_id= #{u.user_id}
+       ORDER BY create_time DESC
+    </select>
+
+    <select id="findBlogListByType" resultMap="BlogUserResultMap" parameterType="java.lang.Integer">
+
+
+        SELECT t.user_id ,t.user_name,b.* FROM tb_user t
+       RIGHT JOIN blog b ON (t.user_id = b.user_id) WHERE b.type=#{type}
+     ORDER BY create_time DESC
+
+    </select>
+
+    <select id="findBlogListAll" resultMap="BlogUserResultMap">
+
+       SELECT t.user_id ,t.user_name,b.* FROM tb_user t
+       RIGHT JOIN blog b ON (t.user_id = b.user_id)
+       ORDER BY create_time DESC
+    </select>
+
+    <select id="findBlogTypeList" resultType="java.util.Map">
+
+        SELECT * FROM blog_type
+    </select>
+
+    <insert id="addBlog" parameterType="java.util.Map">
+
+        INSERT INTO blog (user_id,type,title,content,create_time) VALUE (#{userId},#{type},#{title},#{content}
+                         ,#{createTime})
+    </insert>
+</mapper>

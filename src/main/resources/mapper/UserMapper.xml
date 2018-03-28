@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qyh.myblog_javaee.mapper.UserMapper">
+
+    <select id="findUserInfo" resultType="com.qyh.myblog_javaee.model.UserInfoBean">
+      SELECT * FROM tb_user
+   </select>
+
+    <!-- useGeneratedKeys="true" keyProperty="userId"  为了完成返回插入的userId -->
+    <insert id="addUserInfo"
+            parameterType="com.qyh.myblog_javaee.model.UserInfoBean">
+        INSERT INTO tb_user  (phone,password,user_id,user_name) VALUE (#{phone},#{password},#{userId},#{userName})
+    </insert>
+
+    <select id="queryPasswordById" resultType="com.qyh.myblog_javaee.model.UserInfoBean"
+            parameterType="java.lang.String">
+       SELECT * FROM tb_user  WHERE user_id = #{userId}
+    </select>
+
+    <select id="queryUserIdByPhone" resultType="java.lang.String" parameterType="java.lang.String">
+        SELECT user_id FROM tb_user  WHERE phone = #{phone}
+    </select>
+
+    <select id="login" resultType="com.qyh.myblog_javaee.model.UserInfoBean" parameterType="java.lang.String">
+
+        SELECT * FROM tb_user WHERE phone = #{phone} and password = #{password}
+    </select>
+
+</mapper>
