@@ -20,12 +20,14 @@
 package com.qyh.myblog_javaee.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.qyh.myblog_javaee.mapper.BlogMapper;
 import com.qyh.myblog_javaee.model.BaseBean;
 import com.qyh.myblog_javaee.model.BlogBean;
+import com.qyh.myblog_javaee.model.BlogDetailBean;
 import com.qyh.myblog_javaee.model.BlogTypeBean;
 import com.qyh.myblog_javaee.service.BlogService;
+import com.qyh.myblog_javaee.utils.QUtils;
+import com.sun.xml.internal.rngom.parse.host.Base;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,16 +50,19 @@ public class BlogServiceImpl implements BlogService {
     private List<BlogBean> blogBeanList;
 
     @Override
-    public List<BlogBean> getBlogListById(String userId) {
+    public BaseBean getBlogListById(String userId) {
 
         List<BlogBean> listByUserId = blogMapper.findBlogListByUserId(userId);
-
-        return listByUserId;
+        if(listByUserId != null && listByUserId.size()>0){
+            return BaseBean.success(listByUserId);
+        }else {
+            List emptyList = QUtils.createEmptyList();
+            return BaseBean.success("没有数据",listByUserId);
+        }
     }
 
     @Override
-    public List<BlogBean> getBlogListByType(int type, int page, int pageSize) {
-//        System.out.println("type==" + type + "==page==" + page + "==pageSize==" + pageSize);
+    public BaseBean getBlogListByType(int type, int page, int pageSize) {
         PageHelper.startPage(page, pageSize);
         if (type == 0) { //全部列表
             blogBeanList = blogMapper.findBlogListAll();
@@ -66,21 +71,22 @@ public class BlogServiceImpl implements BlogService {
             blogBeanList = blogMapper.findBlogListByType(type);
         }
 
-        PageInfo<BlogBean> pageInfo = new PageInfo<>();
         if (blogBeanList != null && blogBeanList.size() > 0) {
-            return blogBeanList;
+            return BaseBean.success(blogBeanList);
+        }else{
+            List emptyList = QUtils.createEmptyList();
+            return BaseBean.success("没有更多数据",emptyList);
         }
-        return null;
     }
 
 
     @Override
-    public List<BlogTypeBean> getBlogTypeList() {
+    public BaseBean getBlogTypeList() {
         List<BlogTypeBean> blogTypeList = blogMapper.findBlogTypeList();
         if (blogTypeList != null && blogTypeList.size() > 0) {
-            return blogTypeList;
+            return BaseBean.success(blogTypeList);
         } else {
-            return null;
+            return BaseBean.error("获取数据失败",null);
         }
     }
 
@@ -89,9 +95,19 @@ public class BlogServiceImpl implements BlogService {
         int addBlog = blogMapper.addBlog(blogBean);
         System.out.println("addBlog=" + addBlog);
         if (addBlog >= 1) {
-            return BaseBean.success("上传成功",null);
+            return BaseBean.success("上传成功", null);
         } else {
             return BaseBean.error("上传失败", null);
+        }
+    }
+
+    @Override
+    public BaseBean getBlogDetail(int id) {
+        BlogDetailBean blogDetail = blogMapper.findBlogDetail(id);
+        if (blogDetail != null) {
+            return BaseBean.success(blogDetail);
+        } else {
+            return BaseBean.error("获取详情失败", null);
         }
     }
 }

@@ -20,6 +20,7 @@
 package com.qyh.myblog_javaee.mapper;
 
 import com.qyh.myblog_javaee.model.BlogBean;
+import com.qyh.myblog_javaee.model.BlogDetailBean;
 import com.qyh.myblog_javaee.model.BlogTypeBean;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -50,4 +51,6 @@ public interface BlogMapper {
     List<BlogTypeBean> findBlogTypeList();
 
     int addBlog(Map blogBean);
+
+    BlogDetailBean findBlogDetail(int id);
 }

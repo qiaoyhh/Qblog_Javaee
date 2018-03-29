@@ -17,33 +17,43 @@
  * under the License.
  */
 
-package com.qyh.myblog_javaee.service;
-
-import com.qyh.myblog_javaee.model.BaseBean;
-import com.qyh.myblog_javaee.model.BlogBean;
-import com.qyh.myblog_javaee.model.BlogTypeBean;
-
-import java.util.List;
-import java.util.Map;
+package com.qyh.myblog_javaee.model;
 
 /**
- * 接口  名： BlogService
- * 描  述：
+ * 类  名： BlogCountBean
+ * 描  述：博客统计
  * 创建人： qyh
- * 日  期： 2018年03月17日 16:54
+ * 日  期： 2018年03月29日 10:19
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public interface BlogService {
+public class BlogCountBean {
 
-    BaseBean getBlogListById(String userId);
+    private int typeNum;
+    private String typeName;
 
-    BaseBean getBlogListByType(int type, int page, int pageSize);
+    public int getTypeNum() {
+        return typeNum;
+    }
 
-    BaseBean getBlogTypeList();
+    public void setTypeNum(int typeNum) {
+        this.typeNum = typeNum;
+    }
 
-    BaseBean addBlog(Map blogBean);
+    public String getTypeName() {
+        return typeName;
+    }
 
-    BaseBean getBlogDetail(int id);
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    @Override
+    public String toString() {
+        return "BlogCountBean{" +
+                "typeNum=" + typeNum +
+                ", typeName='" + typeName + '\'' +
+                '}';
+    }
 }

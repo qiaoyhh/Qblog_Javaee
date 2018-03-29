@@ -6,16 +6,24 @@
     <resultMap type="com.qyh.myblog_javaee.model.BlogBean" id="BlogUserResultMap">
         <!--column 是数据库中列名，property 是bean中对应的字段-->
         <id column="id" property="id"/>
-        <result column="user_id" property="userId"/>
+        <!--<result column="user_id" property="userId"/>-->
         <result column="type" property="type"/>
         <result column="create_time" property="createTime"/>
-        <result column="content" property="content"/>
         <result column="title" property="title"/>
         <!--association:用于映射关联查询单个对象的信息-->
         <association property="userBean" javaType="com.qyh.myblog_javaee.model.UserInfoBean">
-            <id column="user_id" property="userId"/>
+            <!--<id column="user_id" property="userId"/>-->
             <result column="user_name" property="userName"/>
         </association>
+    </resultMap>
+
+
+
+    <!--定义通过id查询博客的resultMap,将查询结果映射到BlogBean类中-->
+    <resultMap type="com.qyh.myblog_javaee.model.BlogDetailBean" id="BlogDetailResultMap">
+        <!--column 是数据库中列名，property 是bean中对应的字段-->
+        <id column="id" property="id"/>
+        <result column="content" property="detail"/>
     </resultMap>
 
     <select id="findBlogListByUserId" resultMap="BlogUserResultMap">
@@ -28,7 +36,7 @@
     <select id="findBlogListByType" resultMap="BlogUserResultMap" parameterType="java.lang.Integer">
 
 
-        SELECT t.user_id ,t.user_name,b.* FROM tb_user t
+        SELECT t.user_id ,t.user_name,b.create_time,b.title FROM tb_user t
        RIGHT JOIN blog b ON (t.user_id = b.user_id) WHERE b.type=#{type}
      ORDER BY create_time DESC
 
@@ -51,4 +59,12 @@
         INSERT INTO blog (user_id,type,title,content,create_time) VALUE (#{userId},#{type},#{title},#{content}
                          ,#{createTime})
     </insert>
+
+    <select id="findBlogTypeNum" resultType="java.lang.Integer">
+       SELECT COUNT(type) FROM blog WHERE type =#{TYPE}
+   </select>
+
+    <select id="findBlogDetail" resultMap="BlogDetailResultMap">
+        SELECT content FROM blog WHERE id = #{id}
+    </select>
 </mapper>

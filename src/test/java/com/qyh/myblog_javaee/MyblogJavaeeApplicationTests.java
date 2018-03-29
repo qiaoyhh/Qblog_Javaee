@@ -49,16 +49,15 @@ public class MyblogJavaeeApplicationTests {
 
     @Test
     public void getBlogListById() {
-        List<BlogBean> blogList = blogService.getBlogListById(userId);
+        //List<BlogBean> blogList = blogService.getBlogListById(userId);
 
-        System.out.println("blogList===" + blogList.toString());
+     //   System.out.println("blogList===" + blogList.toString());
 
     }
 
     @Test
     public void getBlogListByType() {
-        List<BlogBean> blogList = blogService.getBlogListByType(1, 1, 10);
-        System.out.println("blogList===" + blogList.size());
+        BaseBean blogListByType = blogService.getBlogListByType(1, 1, 10);
     }
 
 }

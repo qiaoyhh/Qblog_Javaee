@@ -17,33 +17,29 @@
  * under the License.
  */
 
-package com.qyh.myblog_javaee.service;
+package com.qyh.myblog_javaee.utils;
 
-import com.qyh.myblog_javaee.model.BaseBean;
 import com.qyh.myblog_javaee.model.BlogBean;
-import com.qyh.myblog_javaee.model.BlogTypeBean;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
- * 接口  名： BlogService
+ * 类  名： QUtils
  * 描  述：
  * 创建人： qyh
- * 日  期： 2018年03月17日 16:54
+ * 日  期： 2018年03月29日 16:58
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public interface BlogService {
+public class QUtils {
 
-    BaseBean getBlogListById(String userId);
-
-    BaseBean getBlogListByType(int type, int page, int pageSize);
-
-    BaseBean getBlogTypeList();
-
-    BaseBean addBlog(Map blogBean);
-
-    BaseBean getBlogDetail(int id);
+    public static List createEmptyList(){
+        List<BlogBean> blogBeanList = new ArrayList<>();
+        BlogBean blogBean = new BlogBean();
+        blogBean.setId(-1);
+        blogBeanList.add(blogBean);
+        return blogBeanList;
+    }
 }

@@ -57,11 +57,11 @@ public class BlogController {
      */
     @RequestMapping(value = "/getblogsbyid", method = RequestMethod.GET)
     public BaseBean getBlogsListById(String userId) {
-        List<BlogBean> listById = blogService.getBlogListById(userId);
-        if (listById != null && listById.size() > 0) {
-            return BaseBean.success(listById);
+        if (userId != null) {
+            BaseBean listById = blogService.getBlogListById(userId);
+            return listById;
         } else {
-            return BaseBean.error("数据为空", null);
+            return BaseBean.error("请填写必要参数", null);
         }
     }
 
@@ -102,8 +102,8 @@ public class BlogController {
     public BaseBean getBlogsListAll(int type, String page, String pageSize) {
 
         if (page != null && pageSize != null) {
-            List<BlogBean> blogListAll = blogService.getBlogListByType(type, Integer.valueOf(page), Integer.valueOf(pageSize));
-            return BaseBean.success(blogListAll);
+            BaseBean blogListByType = blogService.getBlogListByType(type, Integer.valueOf(page), Integer.valueOf(pageSize));
+            return blogListByType;
         } else {
             return BaseBean.error("请填写必要参数", null);
         }
@@ -116,11 +116,18 @@ public class BlogController {
      */
     @RequestMapping(value = "/getblogtype", method = RequestMethod.GET)
     public BaseBean getBlogType() {
-        List<BlogTypeBean> blogTypeList = blogService.getBlogTypeList();
-        if (blogTypeList != null && blogTypeList.size() > 0) {
-            return BaseBean.success(blogTypeList);
-        } else {
-            return BaseBean.error("数据为空", null);
-        }
+        BaseBean blogTypeList = blogService.getBlogTypeList();
+        return blogTypeList;
+    }
+
+    /**
+     * 获取博客详情
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/getblogdetail", method = RequestMethod.GET)
+    public BaseBean getBlogDetail(int id) {
+        return blogService.getBlogDetail(id);
     }
 }
