@@ -17,35 +17,38 @@
  * under the License.
  */
 
-package com.qyh.myblog_javaee.service;
+package com.qyh.myblog_javaee.controller;
 
 import com.qyh.myblog_javaee.model.BaseBean;
-import com.qyh.myblog_javaee.model.BlogBean;
-import com.qyh.myblog_javaee.model.BlogTypeBean;
-import com.sun.xml.internal.rngom.parse.host.Base;
-
-import java.util.List;
-import java.util.Map;
+import com.qyh.myblog_javaee.service.VideoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 接口  名： BlogService
+ * 类  名： VideoController
  * 描  述：
  * 创建人： qyh
- * 日  期： 2018年03月17日 16:54
+ * 日  期： 2018年03月30日 14:06
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public interface BlogService {
+@RestController
+@RequestMapping(value = "/video")
+public class VideoController {
 
-    BaseBean getBlogListById(String userId);
+    @Autowired
+    private VideoService videoService;
 
-    BaseBean getBlogListByType(int type, int page, int pageSize);
+    @RequestMapping(value = "/getvideotypelist", method = RequestMethod.GET)
+    public BaseBean getVideoTypeList() {
+        return videoService.getVideoTypeList();
+    }
 
-    BaseBean getBlogTypeList();
-
-    BaseBean addBlog(Map blogBean);
-
-    BaseBean getBlogDetail(int id);
-
+    @RequestMapping(value = "/getvideodatalist", method = RequestMethod.GET)
+    public BaseBean getVideoDataList(int page, int pageSize) {
+        return videoService.getVideoDataList(page, pageSize);
+    }
 }

@@ -20,40 +20,33 @@
 package com.qyh.myblog_javaee.model;
 
 /**
- * 类  名： BlogCountBean
- * 描  述：博客统计
+ * 类  名： VideoTypeBean
+ * 描  述：
  * 创建人： qyh
- * 日  期： 2018年03月29日 10:19
+ * 日  期： 2018年03月30日 14:01
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public class BlogCountBean {
+public class VideoTypeBean {
 
-    private int typeNum;
-    private String typeName;
+    private Integer videoTypeId;
 
-    public int getTypeNum() {
-        return typeNum;
+    private String videoTypeName;
+
+    public Integer getVideoTypeId() {
+        return videoTypeId;
     }
 
-    public void setTypeNum(int typeNum) {
-        this.typeNum = typeNum;
+    public void setVideoTypeId(Integer videoTypeId) {
+        this.videoTypeId = videoTypeId;
     }
 
-    public String getTypeName() {
-        return typeName;
+    public String getVideoTypeName() {
+        return videoTypeName;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    @Override
-    public String toString() {
-        return "BlogCountBean{" +
-                "typeNum=" + typeNum +
-                ", typeName='" + typeName + '\'' +
-                '}';
+    public void setVideoTypeName(String videoTypeName) {
+        this.videoTypeName = videoTypeName;
     }
 }

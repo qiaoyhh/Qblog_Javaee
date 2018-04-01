@@ -20,6 +20,7 @@
 package com.qyh.myblog_javaee.utils;
 
 import com.qyh.myblog_javaee.model.BlogBean;
+import com.qyh.myblog_javaee.model.VideoBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +36,19 @@ import java.util.List;
  */
 public class QUtils {
 
-    public static List createEmptyList(){
+    public static List createBlogEmptyList() {
         List<BlogBean> blogBeanList = new ArrayList<>();
         BlogBean blogBean = new BlogBean();
         blogBean.setId(-1);
         blogBeanList.add(blogBean);
+        return blogBeanList;
+    }
+
+    public static List createVideoEmptyList() {
+        List<VideoBean> blogBeanList = new ArrayList<>();
+        VideoBean videoBean = new VideoBean();
+        videoBean.setId(-1);
+        blogBeanList.add(videoBean);
         return blogBeanList;
     }
 }

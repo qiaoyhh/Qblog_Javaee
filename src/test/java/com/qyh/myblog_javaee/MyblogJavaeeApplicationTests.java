@@ -4,6 +4,7 @@ import com.qyh.myblog_javaee.model.BaseBean;
 import com.qyh.myblog_javaee.model.BlogBean;
 import com.qyh.myblog_javaee.service.BlogService;
 import com.qyh.myblog_javaee.service.UserService;
+import com.qyh.myblog_javaee.service.VideoService;
 import com.qyh.myblog_javaee.service.impl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +24,9 @@ public class MyblogJavaeeApplicationTests {
 
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private VideoService videoService;
 
     private String phone = "18810159097";
     private String password = "123456";
@@ -51,7 +55,7 @@ public class MyblogJavaeeApplicationTests {
     public void getBlogListById() {
         //List<BlogBean> blogList = blogService.getBlogListById(userId);
 
-     //   System.out.println("blogList===" + blogList.toString());
+        //   System.out.println("blogList===" + blogList.toString());
 
     }
 
@@ -60,4 +64,15 @@ public class MyblogJavaeeApplicationTests {
         BaseBean blogListByType = blogService.getBlogListByType(1, 1, 10);
     }
 
+    @Test
+    public void getVideoTypeList(){
+        BaseBean videoTypeList = videoService.getVideoTypeList();
+        System.out.println("getVideoTypeList="+videoTypeList.toString());
+    }
+
+    @Test
+    public void getVideoDataList(){
+        BaseBean videoDataList = videoService.getVideoDataList(1,5);
+        System.out.println("getVideoDataList==="+videoDataList.toString());
+    }
 }

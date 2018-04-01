@@ -20,32 +20,19 @@
 package com.qyh.myblog_javaee.service;
 
 import com.qyh.myblog_javaee.model.BaseBean;
-import com.qyh.myblog_javaee.model.BlogBean;
-import com.qyh.myblog_javaee.model.BlogTypeBean;
-import com.sun.xml.internal.rngom.parse.host.Base;
-
-import java.util.List;
-import java.util.Map;
 
 /**
- * 接口  名： BlogService
+ * 接口名： VideoService
  * 描  述：
  * 创建人： qyh
- * 日  期： 2018年03月17日 16:54
+ * 日  期： 2018年03月30日 14:09
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public interface BlogService {
+public interface VideoService {
 
-    BaseBean getBlogListById(String userId);
+    BaseBean getVideoTypeList();
 
-    BaseBean getBlogListByType(int type, int page, int pageSize);
-
-    BaseBean getBlogTypeList();
-
-    BaseBean addBlog(Map blogBean);
-
-    BaseBean getBlogDetail(int id);
-
+    BaseBean getVideoDataList(int page, int pageSize);
 }

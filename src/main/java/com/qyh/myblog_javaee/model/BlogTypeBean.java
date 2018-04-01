@@ -47,4 +47,12 @@ public class BlogTypeBean {
     public void setTypeName(String typeName) {
         this.typeName = typeName;
     }
+
+    @Override
+    public String toString() {
+        return "BlogTypeBean{" +
+                "typeId=" + typeId +
+                ", typeName='" + typeName + '\'' +
+                '}';
+    }
 }

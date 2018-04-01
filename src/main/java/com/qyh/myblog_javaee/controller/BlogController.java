@@ -100,7 +100,6 @@ public class BlogController {
      */
     @RequestMapping(value = "/getbloglist", method = RequestMethod.GET)
     public BaseBean getBlogsListAll(int type, String page, String pageSize) {
-
         if (page != null && pageSize != null) {
             BaseBean blogListByType = blogService.getBlogListByType(type, Integer.valueOf(page), Integer.valueOf(pageSize));
             return blogListByType;
@@ -116,8 +115,7 @@ public class BlogController {
      */
     @RequestMapping(value = "/getblogtype", method = RequestMethod.GET)
     public BaseBean getBlogType() {
-        BaseBean blogTypeList = blogService.getBlogTypeList();
-        return blogTypeList;
+        return blogService.getBlogTypeList();
     }
 
     /**
@@ -128,6 +126,12 @@ public class BlogController {
      */
     @RequestMapping(value = "/getblogdetail", method = RequestMethod.GET)
     public BaseBean getBlogDetail(int id) {
-        return blogService.getBlogDetail(id);
+        if (String.valueOf(id) != null) {
+            return blogService.getBlogDetail(id);
+        } else {
+            return BaseBean.error("请填写必要参数", null);
+        }
     }
+
+
 }

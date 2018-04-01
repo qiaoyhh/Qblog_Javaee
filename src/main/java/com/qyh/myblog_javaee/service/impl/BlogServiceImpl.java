@@ -21,10 +21,7 @@ package com.qyh.myblog_javaee.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.qyh.myblog_javaee.mapper.BlogMapper;
-import com.qyh.myblog_javaee.model.BaseBean;
-import com.qyh.myblog_javaee.model.BlogBean;
-import com.qyh.myblog_javaee.model.BlogDetailBean;
-import com.qyh.myblog_javaee.model.BlogTypeBean;
+import com.qyh.myblog_javaee.model.*;
 import com.qyh.myblog_javaee.service.BlogService;
 import com.qyh.myblog_javaee.utils.QUtils;
 import com.sun.xml.internal.rngom.parse.host.Base;
@@ -53,11 +50,11 @@ public class BlogServiceImpl implements BlogService {
     public BaseBean getBlogListById(String userId) {
 
         List<BlogBean> listByUserId = blogMapper.findBlogListByUserId(userId);
-        if(listByUserId != null && listByUserId.size()>0){
+        if (listByUserId != null && listByUserId.size() > 0) {
             return BaseBean.success(listByUserId);
-        }else {
-            List emptyList = QUtils.createEmptyList();
-            return BaseBean.success("没有数据",listByUserId);
+        } else {
+            List emptyList = QUtils.createBlogEmptyList();
+            return BaseBean.success("没有数据", listByUserId);
         }
     }
 
@@ -73,9 +70,9 @@ public class BlogServiceImpl implements BlogService {
 
         if (blogBeanList != null && blogBeanList.size() > 0) {
             return BaseBean.success(blogBeanList);
-        }else{
-            List emptyList = QUtils.createEmptyList();
-            return BaseBean.success("没有更多数据",emptyList);
+        } else {
+            List emptyList = QUtils.createBlogEmptyList();
+            return BaseBean.success("没有更多数据", emptyList);
         }
     }
 
@@ -86,7 +83,7 @@ public class BlogServiceImpl implements BlogService {
         if (blogTypeList != null && blogTypeList.size() > 0) {
             return BaseBean.success(blogTypeList);
         } else {
-            return BaseBean.error("获取数据失败",null);
+            return BaseBean.error("获取数据失败", null);
         }
     }
 
@@ -110,4 +107,5 @@ public class BlogServiceImpl implements BlogService {
             return BaseBean.error("获取详情失败", null);
         }
     }
+
 }

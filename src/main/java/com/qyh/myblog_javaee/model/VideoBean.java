@@ -17,35 +17,45 @@
  * under the License.
  */
 
-package com.qyh.myblog_javaee.service;
-
-import com.qyh.myblog_javaee.model.BaseBean;
-import com.qyh.myblog_javaee.model.BlogBean;
-import com.qyh.myblog_javaee.model.BlogTypeBean;
-import com.sun.xml.internal.rngom.parse.host.Base;
-
-import java.util.List;
-import java.util.Map;
+package com.qyh.myblog_javaee.model;
 
 /**
- * 接口  名： BlogService
+ * 类  名： VideoBean
  * 描  述：
  * 创建人： qyh
- * 日  期： 2018年03月17日 16:54
+ * 日  期： 2018年03月30日 15:05
  * 版本号： 1.0
  * <p>
  * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
  */
-public interface BlogService {
+public class VideoBean {
+    private Integer id;
 
-    BaseBean getBlogListById(String userId);
+    private String title;
 
-    BaseBean getBlogListByType(int type, int page, int pageSize);
+    private String url;
 
-    BaseBean getBlogTypeList();
+    public Integer getId() {
+        return id;
+    }
 
-    BaseBean addBlog(Map blogBean);
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    BaseBean getBlogDetail(int id);
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }

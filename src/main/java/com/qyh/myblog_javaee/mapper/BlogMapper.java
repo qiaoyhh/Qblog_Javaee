@@ -23,7 +23,6 @@ import com.qyh.myblog_javaee.model.BlogBean;
 import com.qyh.myblog_javaee.model.BlogDetailBean;
 import com.qyh.myblog_javaee.model.BlogTypeBean;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -48,9 +47,11 @@ public interface BlogMapper {
     // 查询所有博客
     List<BlogBean> findBlogListAll();
 
+    // 查询博客类型分类
     List<BlogTypeBean> findBlogTypeList();
 
     int addBlog(Map blogBean);
 
     BlogDetailBean findBlogDetail(int id);
+
 }
