@@ -30,7 +30,7 @@ import org.springframework.context.annotation.PropertySource;
  * 日  期： 2018年03月17日 16:05
  * 版本号： 1.0
  * <p>
- * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
+ * Copyright (c) 2018 www.g7.com.cn Inc. All rights reserved
  */
 @Configuration
 @ConfigurationProperties(prefix = "com.qyh.springbootproject")

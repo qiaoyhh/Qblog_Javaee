@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * 日  期： 2018年03月17日 7:58
  * 版本号： 1.0
  * <p>
- * Copyright (c) 2017 www.g7.com.cn Inc. All rights reserved
+ * Copyright (c) 2018 www.g7.com.cn Inc. All rights reserved
  */
 public class UserInfoBean {
     private String userId;

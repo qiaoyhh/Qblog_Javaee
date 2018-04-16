@@ -40,7 +40,7 @@ import java.util.logging.Logger;
  * 日  期： 2018年03月17日 8:25
  * 版本号： 1.0
  * <p>
- * Copyright (c) 2018 www.youkb.net Inc. All rights reserved
+ * Copyright (c) 2018 www.g7.com.cn Inc. All rights reserved
  */
 @Service
 public class UserServiceImpl implements UserService {
